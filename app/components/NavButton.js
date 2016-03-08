@@ -16,11 +16,11 @@ NavButton.propTypes = {
 const styles = StyleSheet.create({
 	button: {
 		padding: 15,
-		backgroundColor: '#FF6138',
+		backgroundColor: '#3C5773',
 		width: 2000
 	},
 	label: {
-		color: '#ffffff',
+		color: '#F4F4E9',
 		textAlign: 'center'
 	}
 })
