@@ -20,10 +20,18 @@ class AppContainer extends React.Component {
 		let { navigationState, onNavigate, onBack } = this.props
 
 		return (
+
+			// Note that we are not using a NavigationRootContainer here because Redux is handling
+			// the reduction of our state for us. Instead, we grab the navigationState we have in 
+			// our Redux store and pass it directly to the <NavigationAnimatedView />.
 			<NavigationAnimatedView
 				navigationState={navigationState}
 				style={styles.outerContainer}
 				renderOverlay={(position, layout) => (
+
+					// Also note that we must explicity pass <NavigationHeader /> an onNavigate prop
+					// because we are no longer relying on an onNavigate function being available in
+					// the global context (something NavigationRootContainer would have given us).
 					<NavigationHeader
 						navigationState={navigationState}
 						position={position}
@@ -32,6 +40,9 @@ class AppContainer extends React.Component {
 					/>
 				)}
 				renderScene={(state, index, position, layout) => (
+
+					// Again, we pass our navigationState from the Redux store to <NavigationCard />.
+					// Finally, we'll render out our scene based on navigationState in _renderScene().
 					<NavigationCard
 						key={state.key}
 						index={index}
@@ -49,6 +60,7 @@ class AppContainer extends React.Component {
 
 	_renderScene(navigationState) {
 		let { children, index } = navigationState
+		
 		switch(children[index].key) {
 		case 'First':
 			return <First />
