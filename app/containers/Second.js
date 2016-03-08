@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 
 import SecondScreen from '../components/SecondScreen'
-import { navigate } from '../actions'
+import { navigatePush } from '../actions'
 
 
 const mapStateToProps = (state) => {
@@ -13,7 +13,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
 	return {
 		onButtonPress: () => {
-			dispatch(navigate('Third'))
+			dispatch(navigatePush('Third'))
 		}
 	}
 }

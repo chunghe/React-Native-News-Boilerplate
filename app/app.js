@@ -11,7 +11,6 @@ const store = createStoreWithMiddleware(reducers)
 
 export default class App extends Component {
 	render() {
-		console.log('Store is:', store)
 		return (
 			<Provider store={store}>
 				<AppContainer />

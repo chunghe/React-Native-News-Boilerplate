@@ -1,44 +1,45 @@
 import { combineReducers } from 'redux'
+import * as NavigationStateUtils from 'NavigationState'
 
-import { NAVIGATE, NAV_PUSH, NAV_POP, NAV_JUMP_TO_KEY, NAV_JUMP_TO_INDEX, NAV_RESET } from './actions'
+import { NAV_PUSH, NAV_POP, NAV_JUMP_TO_KEY, NAV_JUMP_TO_INDEX, NAV_RESET } from './actions'
 const initialNavState = {
 	key: 'MainNavigation',
 	index: 0,
 	children: [
-		{ key: 'MainPage' }
+		{ key: 'First' }
 	]
 }
 
-
-function currentRoute(state = 'First', action) {
-	switch (action.type) {
-
-	case NAVIGATE:
-		return action.destinationKey
-
-	default: 
-		return state
-	}
-}
-
 function navigationState(state = initialNavState, action) {
+	console.log('In navstate reducer.', state, action)
 	switch (action.type) {
+
 	case NAV_PUSH:
+		return NavigationStateUtils.push(state, action.state)
+
+	case NAV_POP:
+		if (state.index === 0 || state.children.length === 1) return state
+		return NavigationStateUtils.pop(state)
+
+	case NAV_JUMP_TO_KEY:
+		return NavigationStateUtils.jumpTo(state, action.key)
+
+	case NAV_JUMP_TO_INDEX:
+		return NavigationStateUtils.jumpToIndex(state, action.index)
+
+	case NAV_RESET:
 		return {
 			...state,
-			children: [
-				...state.children,
-				action.state
-			],
-			index: state.children.length
+			index: action.index,
+			children: action.children
 		}
+
 	default:
 		return state
 	}
 }
 
 const appReducers = combineReducers({
-	currentRoute,
 	navigationState
 })
 

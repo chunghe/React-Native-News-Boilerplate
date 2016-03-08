@@ -23,6 +23,7 @@ export function navigate(destinationKey) {
 
 // The following action creators were derived from NavigationStackReducer
 export function navigatePush(state) {
+	state = typeof state === 'string' ? { key: state } : state
 	return {
 		type: NAV_PUSH,
 		state

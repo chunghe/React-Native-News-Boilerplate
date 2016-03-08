@@ -6,22 +6,14 @@ import { connect } from 'react-redux'
 import First from './First'
 import Second from './Second'
 import Third from './Third'
+import { navigatePush, navigatePop } from '../actions'
 
 const {
 	AnimatedView: NavigationAnimatedView,
 	Card: NavigationCard,
-	RootContainer: NavigationRootContainer,
-	Reducer: NavigationReducer,
 	Header: NavigationHeader
-} = NavigationExperimental;
+} = NavigationExperimental
 
-const NavigationBasicReducer = NavigationReducer.StackReducer({
-	initialStates: [
-		{key: 'First Route'}
-	],
-	matchAction: action => true,
-	actionStateMap: actionString => ({key: actionString})
-})
 
 class AppContainer extends Component {
 	componentWillMount() {
@@ -31,23 +23,7 @@ class AppContainer extends Component {
 
 	render() {
 		return (
-			<NavigationRootContainer
-				reducer={(lastState, action) => {
-					console.log('In custom reducer')
-					console.log('lastState:', lastState)
-					console.log('action: ', action)
-					return {
-						key: 'NAV_STACK_DEFAULT_KEY',
-						index: 0,
-						children: [
-							{ key: 'First Route' }
-						]
-					}
-				}}
-				ref={navRootContainer => { this.navRootContainer = navRootContainer }}
-				persistenceKey="NavigationAnimatedExampleState"
-				renderNavigation={this._renderNavigated}
-			/>
+			this._renderNavigated(this.props.navigationState, this.props.onNavigate)
 		)
 	}
 
@@ -65,6 +41,7 @@ class AppContainer extends Component {
 						navigationState={navigationState}
 						position={position}
 						getTitle={state => state.key}
+						onNavigate={this.props.onBack}
 					/>
 				)}
 				renderScene={(state, index, position, layout) => (
@@ -76,7 +53,7 @@ class AppContainer extends Component {
 						layout={layout}>
 						<ScrollView style={styles.container}>
 							<Text>Hello there</Text>
-							<Text onPress={() => {onNavigate('Route #' + navigationState.children.length)}}>{navigationState.children[navigationState.index].key}</Text>
+							<Text onPress={() => {onNavigate('Second')}}>{navigationState.children[navigationState.index].key}</Text>
 							{this._renderScene()}
 						</ScrollView>
 					</NavigationCard>
@@ -86,8 +63,8 @@ class AppContainer extends Component {
 	}
 
 	_renderScene() {
-		console.log('got to renderScene')
-		switch(this.props.currentRoute) {
+		let { children, index } = this.props.navigationState
+		switch(children[index].key) {
 		case 'First':
 			return <First />
 		case 'Second':
@@ -112,16 +89,16 @@ const styles = StyleSheet.create({
 	},
 	container: {
 		flex: 1,
-		marginTop: 64
+		paddingTop: 64
 	}
 })
 
 export default connect(
 	state => ({
-		currentRoute: state.currentRoute,
 		navigationState: state.navigationState
 	}),
 	dispatch => ({
-		onNavigate: (destState) => dispatch({type: 'NAV_PUSH', destState})
+		onNavigate: (destState) => dispatch(navigatePush(destState)),
+		onBack: () => dispatch(navigatePop())
 	})
 )(AppContainer)
