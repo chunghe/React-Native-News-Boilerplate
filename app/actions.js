@@ -1,12 +1,4 @@
-import { NavigationExperimental } from 'react-native'
-// const {
-// 	PushAction,
-// 	PopAction,
-// 	JumpToAction,
-// 	JumpToIndexAction,
-// 	ResetAction
-// } = NavigationExperimental.NavigationReducer.NavigationStackReducer
-
+// *** Action Types ***
 export const NAVIGATE = 'NAVIGATE'
 export const NAV_PUSH = 'NAV_PUSH'
 export const NAV_POP = 'NAV_POP'
@@ -14,13 +6,8 @@ export const NAV_JUMP_TO_KEY = 'NAV_JUMP_TO_KEY'
 export const NAV_JUMP_TO_INDEX = 'NAV_JUMP_TO_INDEX'
 export const NAV_RESET = 'NAV_RESET'
 
-export function navigate(destinationKey) {
-	return {
-		type: NAVIGATE,
-		destinationKey
-	}
-}
 
+// *** Action Creators ***
 // The following action creators were derived from NavigationStackReducer
 export function navigatePush(state) {
 	state = typeof state === 'string' ? { key: state } : state

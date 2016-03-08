@@ -19,7 +19,7 @@ FirstScreen.propTypes = {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor: '#2F9CB2', // D690CB, 79BD8F
+		backgroundColor: '#2F9CB2',
 		justifyContent: 'center',
 		alignItems: 'center'
 	},

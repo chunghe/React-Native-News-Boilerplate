@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
 	button: {
 		padding: 15,
 		backgroundColor: '#3C5773',
-		width: 2000
+		alignSelf: 'stretch'
 	},
 	label: {
 		color: '#F4F4E9',

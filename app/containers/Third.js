@@ -1,19 +1,18 @@
 import { connect } from 'react-redux'
 
 import ThirdScreen from '../components/ThirdScreen'
-import { navigateJumpToKey } from '../actions'
+import { navigateReset } from '../actions'
 
 
 const mapStateToProps = (state) => {
 	return {
-		
 	}
 }
 
 const mapDispatchToProps = (dispatch) => {
 	return {
 		onButtonPress: () => {
-			dispatch(navigateJumpToKey('First'))
+			dispatch(navigateReset([{ key: 'First' }], 0))
 		}
 	}
 }

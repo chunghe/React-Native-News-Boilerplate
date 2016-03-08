@@ -19,7 +19,7 @@ SecondScreen.propTypes = {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor: '#D690CB', // 79BD8F
+		backgroundColor: '#D690CB',
 		justifyContent: 'center',
 		alignItems: 'center'
 	},

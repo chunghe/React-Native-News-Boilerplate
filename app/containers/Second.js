@@ -6,7 +6,6 @@ import { navigatePush } from '../actions'
 
 const mapStateToProps = (state) => {
 	return {
-		
 	}
 }
 

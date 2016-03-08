@@ -11,9 +11,7 @@ const initialNavState = {
 }
 
 function navigationState(state = initialNavState, action) {
-	console.log('In navstate reducer.', state, action)
 	switch (action.type) {
-
 	case NAV_PUSH:
 		return NavigationStateUtils.push(state, action.state)
 
