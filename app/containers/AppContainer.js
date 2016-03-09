@@ -27,41 +27,38 @@ class AppContainer extends React.Component {
 			<NavigationAnimatedView
 				navigationState={navigationState}
 				style={styles.outerContainer}
-				renderOverlay={(position, layout) => (
-
+				onNavigate={(action) => {
+					if (action.type === 'back') {
+						onBack();
+					}
+				}}
+				renderOverlay={props => (
 					// Also note that we must explicity pass <NavigationHeader /> an onNavigate prop
 					// because we are no longer relying on an onNavigate function being available in
-					// the global context (something NavigationRootContainer would have given us).
+					// the context (something NavigationRootContainer would have given us).
 					<NavigationHeader
-						navigationState={navigationState}
-						position={position}
+						{...props}
 						getTitle={state => state.key}
 						onNavigate={onBack}
 					/>
 				)}
-				renderScene={(state, index, position, layout) => (
-
+				renderScene={props => (
 					// Again, we pass our navigationState from the Redux store to <NavigationCard />.
 					// Finally, we'll render out our scene based on navigationState in _renderScene().
 					<NavigationCard
-						key={state.key}
-						index={index}
-						navigationState={navigationState}
-						position={position}
-						layout={layout}>
-						<View style={styles.container}>
-							{this._renderScene(navigationState)}
-						</View>
-					</NavigationCard>
+						{...props}
+						key={props.scene.navigationState.key}
+						renderScene={this._renderScene}
+					/>
 				)}
 			/>
 		)
 	}
 
-	_renderScene(navigationState) {
-		let { children, index } = navigationState
+	_renderScene({scene}) {
+		const { navigationState } = scene
 		
-		switch(children[index].key) {
+		switch(navigationState.key) {
 		case 'First':
 			return <First />
 		case 'Second':
