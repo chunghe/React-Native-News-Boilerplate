@@ -6,6 +6,7 @@
     "start": "node node_modules/react-native/local-cli/cli.js start"
   },
   "dependencies": {
+    "react": "^0.14.7",
     "react-native": "facebook/react-native#master",
     "react-redux": "^4.4.0",
     "redux": "^3.3.1",
