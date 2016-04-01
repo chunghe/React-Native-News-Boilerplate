@@ -13,6 +13,7 @@ const initialNavState = {
 function navigationState(state = initialNavState, action) {
 	switch (action.type) {
 	case NAV_PUSH:
+		if (state.children[state.index].key === (action.state && action.state.key)) return state
 		return NavigationStateUtils.push(state, action.state)
 
 	case NAV_POP:
