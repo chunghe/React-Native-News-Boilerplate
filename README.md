@@ -14,8 +14,10 @@ Finally, this was just an attempt to figure out how to connect Redux and Navigat
 
 ## A note about branches
 
-At this time, NavigationExperimental is moving quite quickly and the API is still a bit of a moving target. Thanks to @ericvicenti's work we are tracking the master branch against [the Facebook react-native master branch](https://github.com/facebook/react-native/tree/master) until things quite down a bit. For version-specific implementations, I'm creating a branch per RN version. For example, see the [0.21 branch](https://github.com/jlyman/RN-NavigationExperimental-Redux-Example/tree/0.21) of this repo to see how to implement against the NavigationExperimental API in RN 0.21.
-* [/tree/master](master)
+At this time, NavigationExperimental is moving quite quickly and the API is still a bit of a moving target. Master branch will attempt to follow the current stable release (this is a change from previous) since things are starting to quiet down. For version-specific implementations older than the current stable release, I'm creating a branch per RN version. For example, see the [0.23 branch](https://github.com/jlyman/RN-NavigationExperimental-Redux-Example/tree/0.23) of this repo to see how to implement against the NavigationExperimental API in RN 0.23.
+* [/tree/master](current stable release)
 * [/tree/0.23](0.23)
 * [/tree/0.22](0.22)
 * [/tree/0.21](0.21)
+
+In the future, when NavigationExperimental is changing little between versions, we'll switch to a tag-based approach instead of branches.

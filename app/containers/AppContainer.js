@@ -11,13 +11,14 @@ import { navigatePush, navigatePop } from '../actions'
 const {
 	AnimatedView: NavigationAnimatedView,
 	Card: NavigationCard,
-	Header: NavigationHeader
+	Header: NavigationHeader,
+	RootContainer: NavigationRootContainer
 } = NavigationExperimental
 
 
 class AppContainer extends React.Component {
 	render() {
-		let { navigationState, onNavigate, onBack } = this.props
+		let { navigationState, onNavigate } = this.props
 
 		return (
 
@@ -27,19 +28,14 @@ class AppContainer extends React.Component {
 			<NavigationAnimatedView
 				navigationState={navigationState}
 				style={styles.outerContainer}
-				onNavigate={(action) => {
-					if (action.type === 'back') {
-						onBack();
-					}
-				}}
+				onNavigate={onNavigate}
 				renderOverlay={props => (
-					// Also note that we must explicity pass <NavigationHeader /> an onNavigate prop
-					// because we are no longer relying on an onNavigate function being available in
-					// the context (something NavigationRootContainer would have given us).
 					<NavigationHeader
 						{...props}
-						getTitle={state => state.key}
-						onNavigate={onBack}
+						renderTitleComponent={props => {
+							const title = props.scene.navigationState.title
+							return <NavigationHeader.Title>{title}</NavigationHeader.Title>
+						}}
 					/>
 				)}
 				renderScene={props => (
@@ -47,8 +43,8 @@ class AppContainer extends React.Component {
 					// Finally, we'll render out our scene based on navigationState in _renderScene().
 					<NavigationCard
 						{...props}
-						key={props.scene.navigationState.key}
 						renderScene={this._renderScene}
+						key={props.scene.navigationState.key}
 					/>
 				)}
 			/>
@@ -71,8 +67,7 @@ class AppContainer extends React.Component {
 
 AppContainer.propTypes = {
 	navigationState: PropTypes.object,
-	onNavigate: PropTypes.func.isRequired,
-	onBack: PropTypes.func.isRequired
+	onNavigate: PropTypes.func.isRequired
 }
 
 const styles = StyleSheet.create({
@@ -89,7 +84,19 @@ export default connect(
 		navigationState: state.navigationState
 	}),
 	dispatch => ({
-		onNavigate: (destState) => dispatch(navigatePush(destState)),
-		onBack: () => dispatch(navigatePop())
+		onNavigate: (action) => {
+			// Two types of actions are likely to be passed, both representing "back"
+			// style actions. Check if a type has been indicated, and try to match it.
+			if (action.type && (
+				action.type === NavigationRootContainer.getBackAction().type ||
+				action.type === NavigationCard.CardStackPanResponder.Actions.BACK.type)
+			) {
+				dispatch(navigatePop())
+			} else {
+				// Currently unused by NavigationExperimental (only passes back actions),
+				// but could potentially be used by custom components.
+				dispatch(navigatePush(action))
+			}
+		}
 	})
 )(AppContainer)

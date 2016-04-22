@@ -12,7 +12,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
 	return {
 		onButtonPress: () => {
-			dispatch(navigateReset([{ key: 'First' }], 0))
+			dispatch(navigateReset([{ key: 'First', title: 'First' }], 0))
 		}
 	}
 }

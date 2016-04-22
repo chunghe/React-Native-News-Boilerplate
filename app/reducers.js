@@ -6,7 +6,7 @@ const initialNavState = {
 	key: 'MainNavigation',
 	index: 0,
 	children: [
-		{ key: 'First' }
+		{ key: 'First', title: 'First' }
 	]
 }
 

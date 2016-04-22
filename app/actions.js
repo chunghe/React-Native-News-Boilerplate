@@ -10,7 +10,7 @@ export const NAV_RESET = 'NAV_RESET'
 // *** Action Creators ***
 // The following action creators were derived from NavigationStackReducer
 export function navigatePush(state) {
-	state = typeof state === 'string' ? { key: state } : state
+	state = typeof state === 'string' ? { key: state, title: state } : state
 	return {
 		type: NAV_PUSH,
 		state
