@@ -1,7 +1,9 @@
 {
   "name": "navExpRedux",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "private": true,
+  "author": "Joshua Lyman",
+  "license": "MIT",
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start"
   },

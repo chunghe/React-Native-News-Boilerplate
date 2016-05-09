@@ -16,6 +16,7 @@ Finally, this was just an attempt to figure out how to connect Redux and Navigat
 
 At this time, NavigationExperimental is moving quite quickly and the API is still a bit of a moving target. Master branch will attempt to follow the current stable release (this is a change from previous) since things are starting to quiet down. For version-specific implementations older than the current stable release, I'm creating a branch per RN version. For example, see the [0.23 branch](https://github.com/jlyman/RN-NavigationExperimental-Redux-Example/tree/0.23) of this repo to see how to implement against the NavigationExperimental API in RN 0.23.
 * [/tree/master](current stable release)
+* [/tree/0.24](0.24)
 * [/tree/0.23](0.23)
 * [/tree/0.22](0.22)
 * [/tree/0.21](0.21)
