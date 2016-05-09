@@ -8,7 +8,7 @@ The key elements to note when trying to implement NavigationExperimental with Re
 * You don't need a `<NavigationRootContainer />`, which otherwise runs the navigation reducers, because Redux will do that for us. We lose the constant `onNavigate()` method in React's context, but that's okay because we just make more specific dispatches to navigation methods where they are needed, connected via Redux.
 * This implementation is still following the `NavigationState` and `NavigationParentState` conventions established by NavigationExperimental.
 * It also uses `NavigationStateUtils` to do the dirty work when reducing state.
-* You can skip your own implementation of the reducers and use React Native's versions. See [https://github.com/jlyman/RN-NavigationExperimental-Redux-Example/issues/7#issuecomment-202385080](this comment) and the [/tree/pure-rn-reducers](pure-rn-reducers branch).
+* You can skip your own implementation of the reducers and use React Native's versions. See [this comment](https://github.com/jlyman/RN-NavigationExperimental-Redux-Example/issues/7#issuecomment-202385080) and the [pure-rn-reducers branch](https://github.com/jlyman/RN-NavigationExperimental-Redux-Example/tree/pure-rn-reducers).
 
 Finally, this was just an attempt to figure out how to connect Redux and NavigationExperimental, and does not represent an ideal implementation. If you see room for improvement, please let me know.
 
