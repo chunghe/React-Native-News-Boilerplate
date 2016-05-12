@@ -1,7 +1,7 @@
 'use strict'
 
-import React, {PropTypes} from 'react';
-import {NavigationExperimental, View, StyleSheet} from 'react-native';
+import React, {PropTypes} from 'react'
+import {NavigationExperimental, View, StyleSheet} from 'react-native'
 import { connect } from 'react-redux'
 
 import First from './First'
