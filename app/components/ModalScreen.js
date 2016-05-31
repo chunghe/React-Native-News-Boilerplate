@@ -3,24 +3,24 @@ import {View, Text, StyleSheet} from 'react-native'
 
 import NavButton from './NavButton'
 
-const FirstScreen = (props) => {
+const ModalScreen = (props) => {
 	return (
 		<View style={styles.container}>
-			<Text style={styles.title}>First Screen</Text>
+			<Text style={styles.title}>This is a Modal Screen</Text>
 
 			<NavButton destLabel="Second" buttonHandler={props.onButtonPress} />
 		</View>
 	)
 }
 
-FirstScreen.propTypes = {
+ModalScreen.propTypes = {
 	onButtonPress: PropTypes.func.isRequired
 }
 
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor: '#2F9CB2',
+		backgroundColor: '#cea76a',
 		justifyContent: 'center',
 		alignItems: 'center'
 	},
@@ -32,4 +32,4 @@ const styles = StyleSheet.create({
 	}
 })
 
-export default FirstScreen
+export default ModalScreen

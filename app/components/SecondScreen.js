@@ -1,5 +1,5 @@
-import React, {PropTypes} from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import React, {PropTypes} from 'react'
+import {View, Text, StyleSheet} from 'react-native'
 
 import NavButton from './NavButton'
 
@@ -9,12 +9,17 @@ const SecondScreen = (props) => {
 			<Text style={styles.title}>Second Screen</Text>
 
 			<NavButton destLabel="Third" buttonHandler={props.onButtonPress} />
+
+			<View style={styles.spacer}>
+				<NavButton destLabel="Modal" buttonHandler={props.onModalButtonPress} />
+			</View>
 		</View>
 	)
 }
 
 SecondScreen.propTypes = {
-	onButtonPress: PropTypes.func.isRequired
+	onButtonPress: PropTypes.func.isRequired,
+	onModalButtonPress: PropTypes.func.isRequired
 }
 
 const styles = StyleSheet.create({
@@ -29,6 +34,10 @@ const styles = StyleSheet.create({
 		fontWeight: '500',
 		color: '#ffffff',
 		marginBottom: 30
+	},
+	spacer: {
+		marginTop: 20,
+		alignSelf: 'stretch'
 	}
 })
 
