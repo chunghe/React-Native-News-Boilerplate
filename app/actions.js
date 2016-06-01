@@ -37,10 +37,10 @@ export function navigateJumpToIndex(index) {
 	}
 }
 
-export function navigateReset(children, index) {
+export function navigateReset(routes, index) {
 	return {
 		type: NAV_RESET,
 		index,
-		children
+		routes
 	}
 }
