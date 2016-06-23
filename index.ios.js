@@ -1,7 +1,4 @@
-'use strict'
+import { AppRegistry } from 'react-native';
+import App from './app/app';
 
-import React from 'react'
-import {AppRegistry} from 'react-native'
-import App from './app/app'
-
-AppRegistry.registerComponent('navExpRedux', () => App)
+AppRegistry.registerComponent('navExpRedux', () => App);

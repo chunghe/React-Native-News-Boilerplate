@@ -1,10 +1,10 @@
 import { Platform } from 'react-native';
-import { createStore, applyMiddleware, compose } from 'redux'
-import thunk from 'redux-thunk'
-import reducers from '../redux/reducers'
+import { createStore, applyMiddleware, compose } from 'redux';
+import thunk from 'redux-thunk';
+import reducers from '../redux/reducers';
 import devTools from 'remote-redux-devtools';
 
-const createStoreWithMiddleware = applyMiddleware(thunk)(createStore)
+const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
 
 let enhancer;
 
@@ -15,7 +15,7 @@ if (__DEV__) {
       hostname: 'localhost',
       port: 5678
     })
-  )
+  );
 }
 
 export default function configureStore(initialState = {}) {
@@ -23,7 +23,7 @@ export default function configureStore(initialState = {}) {
 
   if (module.hot) {
     module.hot.accept(() => {
-      store.replaceReducer(require('../redux/reducers').default);
+      store.replaceReducer(require('../redux/reducers').default); // eslint-disable-line global-require
     });
   }
 
