@@ -23,9 +23,9 @@ class AppContainer extends React.Component {
     console.log('navigationState', navigationState);
 
     return (
-			// Redux is handling the reduction of our state for us. We grab the navigationState 
+			// Redux is handling the reduction of our state for us. We grab the navigationState
 			// we have in our Redux store and pass it directly to the <NavigationTransitioner />.
-      <NavigationCardStack 
+      <NavigationCardStack
 				navigationState={navigationState}
 				style={styles.outerContainer}
 				onNavigate={onNavigate}
@@ -42,22 +42,22 @@ class AppContainer extends React.Component {
 		switch(route.key) {
 		case 'First':
       return (
-        <First 
-          key={scene.key} 
+        <First
+          key={scene.key}
           route={route}
         />
       )
 		case 'Second':
 			return (
-				<Second 
-					key={scene.key} 
+				<Second
+					key={scene.key}
           route={route}
 				/>
 			);
 		case 'Third':
       return (
-				<Third 
-					key={scene.key} 
+				<Third
+					key={scene.key}
           route={route}
 				/>
       )

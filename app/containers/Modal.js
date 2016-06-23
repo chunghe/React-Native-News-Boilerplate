@@ -5,7 +5,7 @@ import { navigatePop } from '../redux/modules/routing';
 
 
 const mapStateToProps = (state) => {
-	return {	
+	return {
 	}
 }
 

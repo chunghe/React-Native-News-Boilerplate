@@ -5,7 +5,7 @@ import { navigatePush } from '../redux/modules/routing';
 
 
 const mapStateToProps = (state) => {
-	return {	
+	return {
 	}
 }
 
