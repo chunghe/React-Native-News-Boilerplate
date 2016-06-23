@@ -5,7 +5,7 @@
   "author": "Joshua Lyman",
   "license": "MIT",
   "scripts": {
-    "start": "node node_modules/react-native/local-cli/cli.js start"
+    "postinstall": "remotedev-debugger --hostname localhost --port 5678 --injectserver"
   },
   "dependencies": {
     "react": "^15.0.2",
@@ -15,6 +15,8 @@
     "redux-thunk": "^2.0.1"
   },
   "devDependencies": {
+    "remote-redux-devtools": "^0.3.3",
+    "remote-redux-devtools-on-debugger": "^0.4.7",
     "rnpm-plugin-upgrade": "^0.26.0"
   }
 }
