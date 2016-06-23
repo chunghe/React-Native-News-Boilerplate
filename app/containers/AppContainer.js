@@ -11,71 +11,70 @@ import Modal from './Modal'
 import { navigatePush, navigatePop } from '../actions'
 
 const {
-	Transitioner: NavigationTransitioner,
-	Card: NavigationCard,
+  CardStack: NavigationCardStack,
 	Header: NavigationHeader,
 } = NavigationExperimental
 
 
 class AppContainer extends React.Component {
+
 	render() {
-		let { navigationState, onNavigate } = this.props
+		const { navigationState, onNavigate } = this.props
 
-		return (
-
+    return (
 			// Redux is handling the reduction of our state for us. We grab the navigationState 
 			// we have in our Redux store and pass it directly to the <NavigationTransitioner />.
-			<NavigationTransitioner
+      <NavigationCardStack 
 				navigationState={navigationState}
 				style={styles.outerContainer}
 				onNavigate={onNavigate}
-				renderOverlay={props => (
-					<NavigationHeader
-						{...props}
-						renderTitleComponent={props => {
-							const title = props.scene.route.title
-							return <NavigationHeader.Title>{title}</NavigationHeader.Title>
-						}}
-						// When dealing with modals you may also want to override renderLeftComponent...
-					/>
-				)}
-				renderScene={props => (
-					// Again, we pass our navigationState from the Redux store to <NavigationCard />.
-					// Finally, we'll render out our scene based on navigationState in _renderScene().
-					<NavigationCard
-						{...props}
-						// Transition animations are determined by the StyleInterpolators. Here we manually
-						// override the default horizontal style interpolator that gets applied inside of 
-						// NavigationCard for a vertical direction animation if we are showing a modal.
-						style={props.scene.route.key === 'Modal' ?
-									NavigationCard.CardStackStyleInterpolator.forVertical(props) :
-									undefined
-						}
-						// By default a user can swipe back to pop from the stack. Disable this for modals.
-						// Just like for style interpolators, returning undefined lets NavigationCard override it.
-						panHandlers={props.scene.route.key === 'Modal' ? null : undefined }
-						renderScene={this._renderScene}
-						key={props.scene.route.key}
-					/>
-				)}
-			/>
-		)
+        renderScene={this._renderScene}
+        renderOverlay={this._renderHeader}
+      />
+    )
 	}
 
-	_renderScene({scene}) {
+  _renderScene({scene}) {
 		const { route } = scene
-		
+    console.log('scene', scene, 'route', route);
+
 		switch(route.key) {
 		case 'First':
-			return <First />
+      return (
+        <First 
+          key={scene.key} 
+          route={route}
+        />
+      )
 		case 'Second':
-			return <Second />
+			return (
+				<Second 
+					key={scene.key} 
+          route={route}
+				/>
+			);
 		case 'Third':
-			return <Third />
-		case 'Modal':
-			return <Modal />
+      return (
+				<Third 
+					key={scene.key} 
+          route={route}
+				/>
+      )
 		}
-	}
+  }
+
+  _renderHeader(sceneProps) {
+console.log('sceneProps', sceneProps);
+		return (
+			<NavigationHeader
+				{...sceneProps}
+				renderTitleComponent={props => {
+					const title = props.scene.route.title
+					return <NavigationHeader.Title>{title}</NavigationHeader.Title>
+				}}
+			/>
+		)
+  }
 }
 
 AppContainer.propTypes = {
@@ -89,7 +88,7 @@ const styles = StyleSheet.create({
 	},
 	container: {
 		flex: 1
-	}
+  }
 })
 
 export default connect(

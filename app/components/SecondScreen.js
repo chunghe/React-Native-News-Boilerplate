@@ -1,20 +1,24 @@
-import React, {PropTypes} from 'react'
-import {View, Text, StyleSheet} from 'react-native'
+import React, {PropTypes, Component} from 'react'
+import {Animated, View, Text, StyleSheet} from 'react-native'
 
 import NavButton from './NavButton'
 
-const SecondScreen = (props) => {
-	return (
-		<View style={styles.container}>
-			<Text style={styles.title}>Second Screen</Text>
+class SecondScreen extends Component {
 
-			<NavButton destLabel="Third" buttonHandler={props.onButtonPress} />
+	render() {
+		return (
+			<View style={styles.container}>
+				<Text style={styles.title}>Second Screen</Text>
 
-			<View style={styles.spacer}>
-				<NavButton destLabel="Modal" buttonHandler={props.onModalButtonPress} />
+        <NavButton destLabel="Third" />
+
+				<View style={styles.spacer}>
+          <NavButton destLabel="Modal" />
+				</View>
 			</View>
-		</View>
-	)
+		)
+	}
+
 }
 
 SecondScreen.propTypes = {
@@ -27,7 +31,7 @@ const styles = StyleSheet.create({
 		flex: 1,
 		backgroundColor: '#D690CB',
 		justifyContent: 'center',
-		alignItems: 'center'
+		alignItems: 'center',
 	},
 	title: {
 		fontSize: 24,
