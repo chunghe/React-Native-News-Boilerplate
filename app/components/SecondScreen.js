@@ -9,11 +9,10 @@ class SecondScreen extends Component {
 		return (
 			<View style={styles.container}>
 				<Text style={styles.title}>Second Screen</Text>
-
-        <NavButton destLabel="Third" />
+        <NavButton destLabel="Third" buttonHandler={this.props.onButtonPress} />
 
 				<View style={styles.spacer}>
-          <NavButton destLabel="Modal" />
+          <NavButton destLabel="Modal" buttonHandler={this.props.onModalButtonPress}/>
 				</View>
 			</View>
 		)
