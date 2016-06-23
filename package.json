@@ -22,6 +22,7 @@
     "react-native": "facebook/react-native#master",
     "react-redux": "^4.4.0",
     "redux": "^3.3.1",
+    "redux-api-middleware": "^1.0.2",
     "redux-thunk": "^2.0.1"
   },
   "devDependencies": {

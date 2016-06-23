@@ -1,10 +1,10 @@
 import { Platform } from 'react-native';
 import { createStore, applyMiddleware, compose } from 'redux';
-import thunk from 'redux-thunk';
 import reducers from '../redux/reducers';
 import devTools from 'remote-redux-devtools';
+import { apiMiddleware } from 'redux-api-middleware';
 
-const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
+const createStoreWithMiddleware = applyMiddleware(apiMiddleware)(createStore);
 
 let enhancer;
 

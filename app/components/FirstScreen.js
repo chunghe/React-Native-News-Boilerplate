@@ -1,19 +1,27 @@
-import React, { PropTypes } from 'react';
+import React, { PropTypes, Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
 import NavButton from './NavButton';
 
-const FirstScreen = (props) => {
-  return (
-    <View style={styles.container}>
-      <Text style={styles.title}>First Screen</Text>
+class FirstScreen extends Component {
 
-      <NavButton destLabel="Second" buttonHandler={props.onButtonPress} />
-    </View>
-  );
-};
+  componentWillMount() {
+    console.log('will mount');
+    this.props.loadArticles();
+  }
+
+  render() {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.title}>First Screen</Text>
+        <NavButton destLabel="Second" buttonHandler={this.props.onButtonPress} />
+      </View>
+    );
+  }
+}
 
 FirstScreen.propTypes = {
+  loadArticles: PropTypes.func.isRequired,
   onButtonPress: PropTypes.func.isRequired
 };
 
