@@ -20,7 +20,7 @@ class AppContainer extends React.Component {
 
 	render() {
 		const { navigationState, onNavigate } = this.props
-    console.log('navigationState', navigationState);
+    const isModal = navigationState.routes[navigationState.index].key === 'Modal';
 
     return (
 			// Redux is handling the reduction of our state for us. We grab the navigationState
@@ -29,6 +29,7 @@ class AppContainer extends React.Component {
 				navigationState={navigationState}
 				style={styles.outerContainer}
 				onNavigate={onNavigate}
+        direction={isModal ? 'vertical' : 'horizontal'}
         renderScene={this._renderScene}
         renderOverlay={this._renderHeader}
       />
@@ -37,7 +38,6 @@ class AppContainer extends React.Component {
 
   _renderScene({scene}) {
 		const { route } = scene
-    console.log('scene', scene, 'route', route);
 
 		switch(route.key) {
 		case 'First':
@@ -61,11 +61,17 @@ class AppContainer extends React.Component {
           route={route}
 				/>
       )
+		case 'Modal':
+      return (
+				<Modal
+					key={scene.key}
+          route={route}
+				/>
+      )
 		}
   }
 
   _renderHeader(sceneProps) {
-console.log('sceneProps', sceneProps);
 		return (
 			<NavigationHeader
 				{...sceneProps}
