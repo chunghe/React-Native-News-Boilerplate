@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 
 import ThirdScreen from '../components/ThirdScreen'
-import { navigateReset } from '../actions'
+import { navigateReset } from '../redux/modules/routing';
 
 
 const mapStateToProps = (state) => {

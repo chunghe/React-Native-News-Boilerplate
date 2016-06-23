@@ -8,7 +8,7 @@ import First from './First'
 import Second from './Second'
 import Third from './Third'
 import Modal from './Modal'
-import { navigatePush, navigatePop } from '../actions'
+import { navigatePush, navigatePop } from '../redux/modules/routing'
 
 const {
   CardStack: NavigationCardStack,
@@ -20,6 +20,7 @@ class AppContainer extends React.Component {
 
 	render() {
 		const { navigationState, onNavigate } = this.props
+    console.log('navigationState', navigationState);
 
     return (
 			// Redux is handling the reduction of our state for us. We grab the navigationState 
@@ -93,7 +94,7 @@ const styles = StyleSheet.create({
 
 export default connect(
 	state => ({
-		navigationState: state.navigationState
+		navigationState: state.routing
 	}),
 	dispatch => ({
 		onNavigate: (action) => {

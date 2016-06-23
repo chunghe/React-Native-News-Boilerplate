@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 
 import SecondScreen from '../components/SecondScreen'
-import { navigatePush } from '../actions'
+import { navigatePush } from '../redux/modules/routing';
 
 
 const mapStateToProps = (state) => {
