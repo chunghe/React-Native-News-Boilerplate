@@ -5,8 +5,9 @@ import { navigatePush } from '../redux/modules/routing';
 import { fetchArticles } from '../redux/modules/articles';
 
 
-const mapStateToProps = (state) => {
+const mapStateToProps = ({ articles }) => {
   return {
+    articles
   };
 };
 

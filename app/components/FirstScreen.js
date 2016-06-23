@@ -11,6 +11,7 @@ class FirstScreen extends Component {
   }
 
   render() {
+    console.log('render', this.props.articles);
     return (
       <View style={styles.container}>
         <Text style={styles.title}>First Screen</Text>
@@ -21,6 +22,7 @@ class FirstScreen extends Component {
 }
 
 FirstScreen.propTypes = {
+  articles: PropTypes.object.isRequired,
   loadArticles: PropTypes.func.isRequired,
   onButtonPress: PropTypes.func.isRequired
 };
