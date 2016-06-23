@@ -20,7 +20,7 @@ export function navigatePush(state) {
 	state = typeof state === 'string' ? { key: state, title: state } : state
 	return {
 		type: NAV_PUSH,
-		state
+    state
 	}
 }
 export function navigatePop() {
@@ -68,11 +68,7 @@ export default function reducer(state = initialNavState, action) {
 		return NavigationStateUtils.jumpToIndex(state, action.index)
 
 	case NAV_RESET:
-		return {
-			...state,
-			index: action.index,
-			routes: action.routes
-		}
+    return NavigationStateUtils.reset(state, action.routes, action.index);
 
 	default:
 		return state
