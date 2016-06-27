@@ -1,7 +1,8 @@
 import { connect } from 'react-redux';
 
 import FirstScreen from '../components/FirstScreen';
-import { navigatePush } from '../redux/modules/routing';
+// import { navigatePush } from '../redux/modules/routing';
+import { fetchArticle } from '../redux/modules/article';
 import { fetchArticles } from '../redux/modules/articles';
 
 
@@ -16,10 +17,9 @@ const mapDispatchToProps = (dispatch) => {
     loadArticles: () => {
       dispatch(fetchArticles());
     },
-    onButtonPress: () => {
-      dispatch(navigatePush('Second'));
-    },
-
+    handleNewsPress: (id) => {
+      dispatch(fetchArticle(id));
+    }
   };
 };
 

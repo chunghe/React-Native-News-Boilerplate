@@ -1,5 +1,5 @@
 import React, { PropTypes, Component } from 'react';
-import { ScrollView, View, Text, StyleSheet } from 'react-native';
+import { ScrollView, TouchableOpacity, Text, StyleSheet } from 'react-native';
 
 class FirstScreen extends Component {
   componentWillMount() {
@@ -7,16 +7,21 @@ class FirstScreen extends Component {
   }
 
   renderArticle(article) {
-    // console.log('article', article);
+    const { handleNewsPress } = this.props;
+
     return (
-      <View style={styles.newsRow} key={article.newsId}>
+      // FIXME
+      <TouchableOpacity
+        style={styles.newsRow}
+        key={article.newsId}
+        onPress={() => { handleNewsPress(article.newsId); }}
+      >
         <Text>{article.title}</Text>
-      </View>
+      </TouchableOpacity>
     );
   }
 
   render() {
-    console.log('render', this.props.articles);
     const { articles } = this.props;
 
     return (
@@ -30,7 +35,7 @@ class FirstScreen extends Component {
 FirstScreen.propTypes = {
   articles: PropTypes.object.isRequired,
   loadArticles: PropTypes.func.isRequired,
-  onButtonPress: PropTypes.func.isRequired
+  handleNewsPress: PropTypes.func.isRequired,
 };
 
 const styles = StyleSheet.create({
