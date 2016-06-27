@@ -1,22 +1,28 @@
 import React, { PropTypes, Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-
-import NavButton from './NavButton';
+import { ScrollView, NavigationExperimental, View, Text, StyleSheet } from 'react-native';
 
 class FirstScreen extends Component {
-
   componentWillMount() {
-    console.log('will mount');
     this.props.loadArticles();
+  }
+
+  renderArticle(article) {
+    // console.log('article', article);
+    return (
+      <View style={styles.newsRow} key={article.newsId}>
+        <Text>{article.title}</Text>
+      </View>
+    );
   }
 
   render() {
     console.log('render', this.props.articles);
+    const { articles } = this.props;
+
     return (
-      <View style={styles.container}>
-        <Text style={styles.title}>First Screen</Text>
-        <NavButton destLabel="Second" buttonHandler={this.props.onButtonPress} />
-      </View>
+      <ScrollView style={styles.container}>
+        {Object.keys(articles).map(index => this.renderArticle(articles[index]))}
+      </ScrollView>
     );
   }
 }
@@ -30,9 +36,14 @@ FirstScreen.propTypes = {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#2F9CB2',
-    justifyContent: 'center',
-    alignItems: 'center'
+    backgroundColor: '#fff',
+    marginTop: NavigationExperimental.Header.HEIGHT
+  },
+  newsRow: {
+    padding: 20,
+    borderStyle: 'solid',
+    borderBottomWidth: 1,
+    borderBottomColor: '#ccc'
   },
   title: {
     fontSize: 24,
