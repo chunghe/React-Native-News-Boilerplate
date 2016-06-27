@@ -1,5 +1,5 @@
 import React, { PropTypes, Component } from 'react';
-import { ScrollView, NavigationExperimental, View, Text, StyleSheet } from 'react-native';
+import { ScrollView, View, Text, StyleSheet } from 'react-native';
 
 class FirstScreen extends Component {
   componentWillMount() {
@@ -36,8 +36,7 @@ FirstScreen.propTypes = {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    marginTop: NavigationExperimental.Header.HEIGHT
+    backgroundColor: '#fff'
   },
   newsRow: {
     padding: 20,

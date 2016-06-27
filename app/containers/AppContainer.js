@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import { NavigationExperimental, StyleSheet } from 'react-native';
+import { View, NavigationExperimental, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 
 import First from './First';
@@ -18,37 +18,19 @@ class AppContainer extends React.Component {
 
   _renderScene({ scene }) {
     const { route } = scene;
-
-    switch (route.key) {
-      case 'First':
-        return (
-          <First
-            key={scene.key}
-            route={route}
-          />
-        );
-      case 'Second':
-        return (
-          <Second
-            key={scene.key}
-            route={route}
-          />
-        );
-      case 'Third':
-        return (
-          <Third
-            key={scene.key}
-            route={route}
-          />
-        );
-      case 'Modal':
-        return (
-          <Modal
-            key={scene.key}
-            route={route}
-          />
-        );
-    }
+    const componentsMapping = {
+      First,
+      Second,
+      Third,
+      Modal
+    };
+    const toRender = componentsMapping[route.key] || null;
+    // make all the Views' marginTop equals header height
+    return (
+      <View style={{ marginTop: NavigationExperimental.Header.HEIGHT }}>
+      {React.createElement(toRender, { route })}
+      </View>
+    );
   }
 
   _renderHeader(sceneProps) {
