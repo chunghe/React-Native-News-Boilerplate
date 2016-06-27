@@ -20,10 +20,10 @@
   "dependencies": {
     "lodash.merge": "^4.4.0",
     "react": "^15.0.2",
-    "react-native": "facebook/react-native#master",
+    "react-native": "^0.28.0",
     "react-redux": "^4.4.0",
     "redux": "^3.3.1",
-    "redux-api-middleware": "^1.0.2",
+    "redux-api-middleware": "chunghe/RN-redux-api-middleware#master",
     "redux-thunk": "^2.0.1"
   },
   "devDependencies": {
