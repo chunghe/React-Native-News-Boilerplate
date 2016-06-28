@@ -1,5 +1,5 @@
 import React, { PropTypes, Component } from 'react';
-import { ScrollView, TouchableOpacity, Text, StyleSheet } from 'react-native';
+import { Image, ScrollView, TouchableOpacity, Text, StyleSheet } from 'react-native';
 
 class Articles extends Component {
   componentWillMount() {
@@ -15,7 +15,14 @@ class Articles extends Component {
         key={article.newsId}
         onPress={() => { handleNewsPress(article); }}
       >
-        <Text>{article.title}</Text>
+        <Text style={styles.title}>{article.title}</Text>
+        {!!article.hasCoverPhoto &&
+          <Image
+            resizeMode="cover"
+            source={{ uri: article.coverSrc.m.src }}
+            style={styles.img}
+          />
+        }
       </TouchableOpacity>
     );
   }
@@ -43,16 +50,24 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff'
   },
   newsRow: {
-    padding: 20,
-    borderStyle: 'solid',
+    flex: 1,
+    height: 100,
+    backgroundColor: '#fff',
+    borderBottomColor: '#ddd',
     borderBottomWidth: 1,
-    borderBottomColor: '#ccc'
+    flexDirection: 'row',
+    paddingTop: 8,
+    paddingLeft: 18,
+    paddingRight: 8,
+    paddingBottom: 0,
+    overflow: 'hidden'
   },
   title: {
-    fontSize: 24,
-    fontWeight: '500',
-    color: '#ffffff',
-    marginBottom: 30
+    flex: 1,
+  },
+  img: {
+    height: 86,
+    width: 86
   }
 });
 
