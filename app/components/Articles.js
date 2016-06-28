@@ -1,7 +1,7 @@
 import React, { PropTypes, Component } from 'react';
 import { ScrollView, TouchableOpacity, Text, StyleSheet } from 'react-native';
 
-class FirstScreen extends Component {
+class Articles extends Component {
   componentWillMount() {
     this.props.loadArticles();
   }
@@ -31,7 +31,7 @@ class FirstScreen extends Component {
   }
 }
 
-FirstScreen.propTypes = {
+Articles.propTypes = {
   articles: PropTypes.object.isRequired,
   loadArticles: PropTypes.func.isRequired,
   handleNewsPress: PropTypes.func.isRequired,
@@ -56,4 +56,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default FirstScreen;
+export default Articles;

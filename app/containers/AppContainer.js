@@ -2,10 +2,7 @@ import React, { PropTypes } from 'react';
 import { View, NavigationExperimental, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 
-import First from './First';
-import Second from './Second';
-import Third from './Third';
-import Modal from './Modal';
+import Articles from './Articles';
 import Article from './Article';
 import { navigatePush, navigatePop } from '../redux/modules/routing';
 
@@ -20,12 +17,10 @@ class AppContainer extends React.Component {
   _renderScene({ scene }) {
     const { route } = scene;
     const componentsMapping = {
+      Articles,
       Article,
-      First,
-      Second,
-      Third,
-      Modal
     };
+
     const toRender = componentsMapping[route.key] || null;
     // make all the Views' marginTop equals header height
     return (
@@ -41,7 +36,7 @@ class AppContainer extends React.Component {
         {...sceneProps}
         renderTitleComponent={props => {
           const route = props.scene.route;
-          const title =  route.key === 'First' ? 'DEMO' : 'NEWS';
+          const title =  route.key === 'Articles' ? 'DEMO' : 'NEWS';
           return <NavigationHeader.Title>{title}</NavigationHeader.Title>;
         }}
       />

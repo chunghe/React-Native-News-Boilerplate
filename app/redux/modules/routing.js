@@ -11,7 +11,7 @@ export const NAV_RESET = 'NAV_RESET';
 const initialNavState = {
   index: 0,
   routes: [
-    { key: 'First', title: 'First' }
+    { key: 'Articles' }
   ]
 };
 

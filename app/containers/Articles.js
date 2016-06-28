@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import FirstScreen from '../components/FirstScreen';
+import Articles from '../components/Articles';
 import { navigatePush } from '../redux/modules/routing';
 import { fetchArticles } from '../redux/modules/articles';
 
@@ -25,4 +25,4 @@ const mapDispatchToProps = (dispatch) => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(FirstScreen);
+)(Articles);
