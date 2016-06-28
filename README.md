@@ -1,6 +1,6 @@
 # React-Native-News-Boilerplate
 
-##
+
 fork from [RN-NavigationExperimental-Redux-Example](https://github.com/jlyman/RN-NavigationExperimental-Redux-Example) with following changes:
 
 1. working with latest React-Native NavigationExperimental API (version 0.28 At the time of writing)
@@ -11,6 +11,24 @@ fork from [RN-NavigationExperimental-Redux-Example](https://github.com/jlyman/RN
 1. integrate [redux-api-middleware](https://github.com/agraboso/redux-api-middleware)
 1. integrate [remote-redux-devtools](https://github.com/zalmoxisus/remote-redux-devtools)
 
+## getting started
+
+make sure you go through all the steps in [Getting Started](https://facebook.github.io/react-native/docs/getting-started.html) guide
+
+```
+$ npm install
+```
+
+for iOS 
+```
+$ react-native run-ios 
+```
+
+for Android
+```
+$ react-native run-android
+$ adb reverse tcp:5678 tcp:5678  # to enable redux developer tool
+```
 ## screenshots
 
 ![ios screenshot](demo/ios.gif?raw=true "Screencast of ios functionality")
