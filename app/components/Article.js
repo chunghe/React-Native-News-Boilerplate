@@ -10,6 +10,13 @@ class Article extends Component {
     loadArticle(route.article.newsId);
   }
 
+  componentWillReceiveProps(nextProps) {
+    const { route, loadArticle } = nextProps;
+    if (this.props.route.article.newsId !== nextProps.route.article.newsId) {
+      loadArticle(route.article.newsId);
+    }
+  }
+
   render() {
     const { article } = this.props;
 

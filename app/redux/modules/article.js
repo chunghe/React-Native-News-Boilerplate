@@ -1,4 +1,3 @@
-import merge from 'lodash.merge';
 import { CALL_API } from 'redux-api-middleware';
 
 export const ARTICLE_REQUEST = 'ARTICLE_REQUEST';
@@ -22,9 +21,9 @@ export default function reducer(state = {}, action) {
     case ARTICLE_REQUEST:
       return { loading: true };
     case ARTICLE_SUCCESS:
-      return merge({}, action.payload.items);
+      return { ...action.payload.items, loading: false };
     case ARTICLE_FAILURE:
-      return action.payload.message;
+      return { error: true, message: action.payload.message, loading: false };
     default:
       return state;
   }
