@@ -1,5 +1,5 @@
 import React, { PropTypes, Component } from 'react';
-import { ScrollView, View, Text, StyleSheet } from 'react-native';
+import { ActivityIndicator, ScrollView, View, Text, StyleSheet } from 'react-native';
 import unescape from 'lodash.unescape';
 
 import HtmlRender from 'react-native-html-render';
@@ -22,8 +22,8 @@ class Article extends Component {
 
     if (article.loading) {
       return (
-        <View>
-          <Text>loading</Text>
+        <View style={styles.center}>
+          <ActivityIndicator />
         </View>
       );
     }
@@ -55,6 +55,12 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     padding: 20
+  },
+  center: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    flex: 1,
+    backgroundColor: '#fff'
   },
   titleText: {
     fontSize: 24,
