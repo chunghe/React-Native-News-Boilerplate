@@ -19,6 +19,8 @@ export function fetchArticle(id) {
 
 export default function reducer(state = {}, action) {
   switch (action.type) {
+    case ARTICLE_REQUEST:
+      return { loading: true };
     case ARTICLE_SUCCESS:
       return merge({}, state, action.payload.items);
     case ARTICLE_FAILURE:

@@ -10,11 +10,10 @@ class FirstScreen extends Component {
     const { handleNewsPress } = this.props;
 
     return (
-      // FIXME
       <TouchableOpacity
         style={styles.newsRow}
         key={article.newsId}
-        onPress={() => { handleNewsPress(article.newsId); }}
+        onPress={() => { handleNewsPress(article); }}
       >
         <Text>{article.title}</Text>
       </TouchableOpacity>

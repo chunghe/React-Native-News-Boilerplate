@@ -6,6 +6,7 @@ import First from './First';
 import Second from './Second';
 import Third from './Third';
 import Modal from './Modal';
+import Article from './Article';
 import { navigatePush, navigatePop } from '../redux/modules/routing';
 
 const {
@@ -19,6 +20,7 @@ class AppContainer extends React.Component {
   _renderScene({ scene }) {
     const { route } = scene;
     const componentsMapping = {
+      Article,
       First,
       Second,
       Third,
@@ -27,7 +29,7 @@ class AppContainer extends React.Component {
     const toRender = componentsMapping[route.key] || null;
     // make all the Views' marginTop equals header height
     return (
-      <View style={{ marginTop: NavigationExperimental.Header.HEIGHT }}>
+      <View style={{ flex: 1, marginTop: NavigationExperimental.Header.HEIGHT }}>
       {React.createElement(toRender, { route })}
       </View>
     );
@@ -38,7 +40,8 @@ class AppContainer extends React.Component {
       <NavigationHeader
         {...sceneProps}
         renderTitleComponent={props => {
-          const title = props.scene.route.title;
+          const route = props.scene.route;
+          const title =  route.key === 'First' ? 'DEMO' : 'NEWS';
           return <NavigationHeader.Title>{title}</NavigationHeader.Title>;
         }}
       />

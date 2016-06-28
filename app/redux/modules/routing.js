@@ -16,11 +16,11 @@ const initialNavState = {
 };
 
 // Action Creators
-export function navigatePush(state) {
-  state = typeof state === 'string' ? { key: state, title: state } : state; // eslint-disable-line no-param-reassign
+export function navigatePush(data) {
+  // state = typeof state === 'string' ? { key: state, title: state } : state; // eslint-disable-line no-param-reassign
   return {
     type: NAV_PUSH,
-    state
+    data
   };
 }
 
@@ -58,7 +58,7 @@ export default function reducer(state = initialNavState, action) {
       if (state.routes[state.index].key === (action.state && action.state.key)) {
         return state;
       }
-      return NavigationStateUtils.push(state, action.state);
+      return NavigationStateUtils.push(state, action.data);
 
     case NAV_POP:
       if (state.index === 0 || state.routes.length === 1) {

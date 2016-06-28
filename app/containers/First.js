@@ -1,8 +1,7 @@
 import { connect } from 'react-redux';
 
 import FirstScreen from '../components/FirstScreen';
-// import { navigatePush } from '../redux/modules/routing';
-import { fetchArticle } from '../redux/modules/article';
+import { navigatePush } from '../redux/modules/routing';
 import { fetchArticles } from '../redux/modules/articles';
 
 
@@ -17,8 +16,8 @@ const mapDispatchToProps = (dispatch) => {
     loadArticles: () => {
       dispatch(fetchArticles());
     },
-    handleNewsPress: (id) => {
-      dispatch(fetchArticle(id));
+    handleNewsPress: (article) => {
+      dispatch(navigatePush({ key: 'Article', article }));
     }
   };
 };
