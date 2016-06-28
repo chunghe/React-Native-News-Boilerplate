@@ -22,7 +22,7 @@ export default function reducer(state = {}, action) {
     case ARTICLE_REQUEST:
       return { loading: true };
     case ARTICLE_SUCCESS:
-      return merge({}, state, action.payload.items);
+      return merge({}, action.payload.items);
     case ARTICLE_FAILURE:
       return action.payload.message;
     default:

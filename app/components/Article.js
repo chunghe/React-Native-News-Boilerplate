@@ -1,5 +1,8 @@
 import React, { PropTypes, Component } from 'react';
 import { ScrollView, View, Text, StyleSheet } from 'react-native';
+import unescape from 'lodash.unescape';
+
+import HtmlRender from 'react-native-html-render';
 
 class Article extends Component {
   componentWillMount() {
@@ -9,15 +12,25 @@ class Article extends Component {
 
   render() {
     const { article } = this.props;
-    console.log('article', article);
+
+    if (article.loading) {
+      return (
+        <View>
+          <Text>loading</Text>
+        </View>
+      );
+    }
 
     return (
       <ScrollView style={styles.container}>
         <View>
-          <Text>{article.title}</Text>
+          <Text style={styles.titleText}>{article.title}</Text>
         </View>
-        <View>
-          <Text>{article.content}</Text>
+        <View style={styles.content}>
+          <HtmlRender
+            onLinkPress={() => {}}
+            value={unescape(article.content)}
+          />
         </View>
       </ScrollView>
     );
@@ -34,6 +47,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
+    padding: 20
+  },
+  titleText: {
+    fontSize: 24,
+    fontWeight: '600'
   }
 });
 
