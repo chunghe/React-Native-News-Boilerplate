@@ -4,26 +4,38 @@ export const ARTICLE_REQUEST = 'ARTICLE_REQUEST';
 export const ARTICLE_SUCCESS = 'ARTICLE_SUCCESS';
 export const ARTICLE_FAILURE = 'ARTICLE_FAILURE';
 
-const API_ROOT = 'http://m.cnyes.com/api/v2';
+const API_ROOT = 'http://dev.twreporter.org:8080';
 
-export function fetchArticle(id) {
+export function fetchArticle(slug) {
   return {
     [CALL_API]: {
-      endpoint: `${API_ROOT}/news/${id}?isMobile=1`,
+      endpoint: `${API_ROOT}/posts/${slug}`,
       method: 'GET',
       types: [ARTICLE_REQUEST, ARTICLE_SUCCESS, ARTICLE_FAILURE]
     }
   };
 }
 
-export default function reducer(state = {}, action) {
+export default function reducer(state = { loaded: false }, action) {
   switch (action.type) {
     case ARTICLE_REQUEST:
-      return { loading: true };
+      return {
+        loading: true,
+        loaded: false
+      };
     case ARTICLE_SUCCESS:
-      return { ...action.payload.items, loading: false };
+      return {
+        ...action.payload,
+        loading: false,
+        loaded: true
+      };
     case ARTICLE_FAILURE:
-      return { error: true, message: action.payload.message, loading: false };
+      return {
+        error: true,
+        message: action.payload.message,
+        loading: false ,
+        loaded: false
+      };
     default:
       return state;
   }

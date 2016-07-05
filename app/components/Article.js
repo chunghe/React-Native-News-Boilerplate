@@ -1,26 +1,25 @@
 import React, { PropTypes, Component } from 'react';
 import { ActivityIndicator, ScrollView, View, Text, StyleSheet } from 'react-native';
-import unescape from 'lodash.unescape';
 
 import HtmlRender from 'react-native-html-render';
 
 class Article extends Component {
   componentWillMount() {
     const { route, loadArticle } = this.props;
-    loadArticle(route.article.newsId);
+    loadArticle(route.article.slug);
   }
 
   componentWillReceiveProps(nextProps) {
     const { route, loadArticle } = nextProps;
-    if (this.props.route.article.newsId !== nextProps.route.article.newsId) {
-      loadArticle(route.article.newsId);
+    if (this.props.route.article.slug !== nextProps.route.article.slug) {
+      loadArticle(route.article.slug);
     }
   }
 
   render() {
     const { article } = this.props;
 
-    if (article.loading) {
+    if (!article.loaded) {
       return (
         <View style={styles.center}>
           <ActivityIndicator />
@@ -36,7 +35,7 @@ class Article extends Component {
         <View style={styles.content}>
           <HtmlRender
             onLinkPress={() => {}}
-            value={unescape(article.content)}
+            value={article.content.extended.html}
           />
         </View>
       </ScrollView>
