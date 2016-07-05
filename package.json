@@ -19,7 +19,6 @@
   ],
   "dependencies": {
     "lodash.merge": "^4.4.0",
-    "lodash.unescape": "^4.0.0",
     "react": "^15.0.2",
     "react-native": "^0.28.0",
     "react-native-html-render": "^1.0.4",
