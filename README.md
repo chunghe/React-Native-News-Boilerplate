@@ -1,4 +1,4 @@
-# React-Native-News-Boilerplate
+# bunkobon
 
 
 fork from [RN-NavigationExperimental-Redux-Example](https://github.com/jlyman/RN-NavigationExperimental-Redux-Example) with following changes:
