@@ -2,9 +2,10 @@ import React, { PropTypes } from 'react';
 import { View, NavigationExperimental, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 
+import { navigatePush, navigatePop } from '../redux/modules/routing';
 import Articles from './Articles';
 import Article from './Article';
-import { navigatePush, navigatePop } from '../redux/modules/routing';
+import { IconSetting } from '../assets/svg';
 
 const {
   CardStack: NavigationCardStack,
@@ -34,6 +35,15 @@ class AppContainer extends React.Component {
     return (
       <NavigationHeader
         {...sceneProps}
+
+        renderRightComponent={props => {
+          return (
+            <View style={[styles.center, { padding: 10 }]}>
+              <IconSetting />
+            </View>
+          );
+        }}
+
         renderTitleComponent={props => {
           const route = props.scene.route;
           const title =  route.key === 'Articles' ? 'DEMO' : 'NEWS';
@@ -74,6 +84,11 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1
+  },
+  center: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
   }
 });
 
