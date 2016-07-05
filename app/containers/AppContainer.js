@@ -1,10 +1,11 @@
 import React, { PropTypes } from 'react';
-import { View, NavigationExperimental, StyleSheet } from 'react-native';
+import { View, TouchableOpacity, NavigationExperimental, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 
 import { navigatePush, navigatePop } from '../redux/modules/routing';
 import Articles from './Articles';
 import Article from './Article';
+import Settings from '../components/Settings';
 import { IconSetting } from '../assets/svg';
 
 const {
@@ -20,6 +21,7 @@ class AppContainer extends React.Component {
     const componentsMapping = {
       Articles,
       Article,
+      Settings
     };
 
     const toRender = componentsMapping[route.key] || null;
@@ -38,10 +40,13 @@ class AppContainer extends React.Component {
 
         renderRightComponent={props => {
           return (
-            <View style={[styles.center, { padding: 10 }]}>
+            <TouchableOpacity
+              style={[styles.center, { padding: 10 }]}
+              onPress={() => { sceneProps.onNavigate({ key: 'Settings' }); }}
+            >
               <IconSetting />
-            </View>
-          );
+            </TouchableOpacity>
+            );
         }}
 
         renderTitleComponent={props => {
@@ -55,7 +60,7 @@ class AppContainer extends React.Component {
 
   render() {
     const { navigationState, onNavigate } = this.props;
-    const isModal = navigationState.routes[navigationState.index].key === 'Modal';
+    const isSettings = navigationState.routes[navigationState.index].key === 'Settings';
 
     return (
       // Redux is handling the reduction of our state for us. We grab the navigationState
@@ -64,7 +69,7 @@ class AppContainer extends React.Component {
         navigationState={navigationState}
         style={styles.outerContainer}
         onNavigate={onNavigate}
-        direction={isModal ? 'vertical' : 'horizontal'}
+        direction={isSettings ? 'vertical' : 'horizontal'}
         renderScene={this._renderScene}
         renderOverlay={this._renderHeader}
       />
