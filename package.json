@@ -25,8 +25,7 @@
     "react-native-svg": "^3.0.0",
     "react-redux": "^4.4.0",
     "redux": "^3.3.1",
-    "redux-api-middleware": "chunghe/RN-redux-api-middleware#master",
-    "redux-thunk": "^2.0.1"
+    "redux-api-middleware": "chunghe/RN-redux-api-middleware#master"
   },
   "devDependencies": {
     "babel-eslint": "^6.1.0",
