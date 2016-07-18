@@ -39,7 +39,7 @@ class AppContainer extends React.Component {
   }
 
   _renderHeader(sceneProps) {
-    const { handleNavigateBack, handleNavigate } = this.props;
+    const { handleNavigateBack, pushRoute } = this.props;
 
     return (
       <NavigationHeader
@@ -50,7 +50,7 @@ class AppContainer extends React.Component {
           return (
             <TouchableOpacity
               style={[styles.center, { padding: 10 }]}
-              onPress={() => { handleNavigate({ key: 'Settings' }); }}
+              onPress={() => { pushRoute({ key: 'Settings' }); }}
             >
               <IconSetting />
             </TouchableOpacity>
@@ -86,7 +86,7 @@ class AppContainer extends React.Component {
 
 AppContainer.propTypes = {
   navigationState: PropTypes.object,
-  handleNavigate: PropTypes.func.isRequired,
+  pushRoute: PropTypes.func.isRequired,
   handleNavigateBack: PropTypes.func.isRequired
 };
 
@@ -109,19 +109,11 @@ export default connect(
     navigationState: state.routing
   }),
   dispatch => ({
-    handleNavigateBack: () => {
+    handleNavigateBack: (action) => {
       dispatch(navigatePop());
     },
-    handleNavigate: (action) => {
-      // Two types of actions are likely to be passed, both representing "back"
-      // style actions. Check if a type has been indicated, and try to match it.
-      if (action.type && ( action.type === 'BackAction')) {
-        dispatch(navigatePop());
-      } else {
-        // Currently unused by NavigationExperimental (only passes back actions),
-        // but could potentially be used by custom components.
-        dispatch(navigatePush(action));
-      }
+    pushRoute: (action) => {
+      dispatch(navigatePush(action));
     }
   })
 )(AppContainer);
