@@ -15,6 +15,11 @@ const {
 
 
 class AppContainer extends React.Component {
+  constructor(props) {
+    super(props);
+    this._renderHeader = this._renderHeader.bind(this);
+    this._renderScene = this._renderScene.bind(this);
+  }
 
   _renderScene({ scene }) {
     const { route } = scene;
@@ -34,15 +39,18 @@ class AppContainer extends React.Component {
   }
 
   _renderHeader(sceneProps) {
+    const { handleNavigateBack, handleNavigate } = this.props;
+
     return (
       <NavigationHeader
         {...sceneProps}
 
+        onNavigateBack={handleNavigateBack}
         renderRightComponent={props => {
           return (
             <TouchableOpacity
               style={[styles.center, { padding: 10 }]}
-              onPress={() => { sceneProps.onNavigate({ key: 'Settings' }); }}
+              onPress={() => { handleNavigate({ key: 'Settings' }); }}
             >
               <IconSetting />
             </TouchableOpacity>
@@ -59,8 +67,7 @@ class AppContainer extends React.Component {
   }
 
   render() {
-    const { navigationState, onNavigate } = this.props;
-    const isSettings = navigationState.routes[navigationState.index].key === 'Settings';
+    const { navigationState, handleNavigateBack } = this.props;
 
     return (
       // Redux is handling the reduction of our state for us. We grab the navigationState
@@ -68,8 +75,7 @@ class AppContainer extends React.Component {
       <NavigationCardStack
         navigationState={navigationState}
         style={styles.outerContainer}
-        onNavigate={onNavigate}
-        direction={isSettings ? 'vertical' : 'horizontal'}
+        onNavigateBack={handleNavigateBack}
         renderScene={this._renderScene}
         renderOverlay={this._renderHeader}
       />
@@ -80,7 +86,8 @@ class AppContainer extends React.Component {
 
 AppContainer.propTypes = {
   navigationState: PropTypes.object,
-  onNavigate: PropTypes.func.isRequired
+  handleNavigate: PropTypes.func.isRequired,
+  handleNavigateBack: PropTypes.func.isRequired
 };
 
 const styles = StyleSheet.create({
@@ -102,7 +109,10 @@ export default connect(
     navigationState: state.routing
   }),
   dispatch => ({
-    onNavigate: (action) => {
+    handleNavigateBack: () => {
+      dispatch(navigatePop());
+    },
+    handleNavigate: (action) => {
       // Two types of actions are likely to be passed, both representing "back"
       // style actions. Check if a type has been indicated, and try to match it.
       if (action.type && ( action.type === 'BackAction')) {
