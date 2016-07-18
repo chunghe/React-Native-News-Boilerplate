@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import { View, TouchableOpacity, NavigationExperimental, StyleSheet } from 'react-native';
+import { BackAndroid, View, TouchableOpacity, NavigationExperimental, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 
 import { navigatePush, navigatePop } from '../redux/modules/routing';
@@ -19,6 +19,18 @@ class AppContainer extends React.Component {
     super(props);
     this._renderHeader = this._renderHeader.bind(this);
     this._renderScene = this._renderScene.bind(this);
+  }
+
+  componentWillMount() {
+    BackAndroid.addEventListener('hardwareBackPress', this.handleBackButton.bind(this));
+  }
+
+  handleBackButton() {
+    if (this.props.navigationState.index) {
+      this.props.handleNavigateBack();
+      return true;
+    }
+    return false;
   }
 
   _renderScene({ scene }) {
