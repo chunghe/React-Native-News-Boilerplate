@@ -6,7 +6,6 @@ import { navigatePush, navigatePop } from '../redux/modules/routing';
 import Articles from './Articles';
 import Article from './Article';
 import Settings from '../components/Settings';
-import { IconSetting } from '../assets/svg';
 
 const {
   CardStack: NavigationCardStack,
@@ -58,16 +57,6 @@ class AppContainer extends React.Component {
         {...sceneProps}
 
         onNavigateBack={handleNavigateBack}
-        renderRightComponent={props => {
-          return (
-            <TouchableOpacity
-              style={[styles.center, { padding: 10 }]}
-              onPress={() => { pushRoute({ key: 'Settings' }); }}
-            >
-              <IconSetting />
-            </TouchableOpacity>
-            );
-        }}
 
         renderTitleComponent={props => {
           const route = props.scene.route;
