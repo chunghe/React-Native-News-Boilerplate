@@ -34,3 +34,4 @@ $ adb reverse tcp:5678 tcp:5678  # to enable redux developer tool
 
 ![ios screenshot](demo/ios.gif?raw=true "Screencast of ios functionality")
 ![android screenshot](demo/android.gif?raw=true "Screencast of android functionality")
+![redux debugger screencast](demo/debugger.png?raw=true "Screencast of redux debugger")
