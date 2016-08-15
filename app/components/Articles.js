@@ -11,11 +11,11 @@ class Articles extends Component {
 
     return (
       <TouchableOpacity
-        style={styles.newsRow}
         key={article._id}
+        style={styles.newsRow}
         onPress={() => { handleNewsPress(article); }}
       >
-        <Text style={styles.title}>{article.title}</Text>
+        <Text>{article.title}</Text>
       </TouchableOpacity>
     );
   }
@@ -43,20 +43,11 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff'
   },
   newsRow: {
-    flex: 1,
     height: 100,
-    backgroundColor: '#fff',
-    borderBottomColor: '#ddd',
+    borderStyle: 'solid',
+    borderColor: '#ccc',
     borderBottomWidth: 1,
-    flexDirection: 'row',
-    paddingTop: 8,
-    paddingLeft: 18,
-    paddingRight: 8,
-    paddingBottom: 0,
-    overflow: 'hidden'
-  },
-  title: {
-    flex: 1,
+    justifyContent: 'center'
   },
   img: {
     height: 86,
