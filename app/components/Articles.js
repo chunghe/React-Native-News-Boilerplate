@@ -1,5 +1,5 @@
 import React, { PropTypes, Component } from 'react';
-import { ScrollView, TouchableOpacity, Text, StyleSheet } from 'react-native';
+import { Image, ScrollView, TouchableOpacity, Text, StyleSheet } from 'react-native';
 
 class Articles extends Component {
   componentWillMount() {
@@ -11,11 +11,18 @@ class Articles extends Component {
 
     return (
       <TouchableOpacity
-        key={article._id}
+        key={article.newsId}
         style={styles.newsRow}
         onPress={() => { handleNewsPress(article); }}
       >
         <Text>{article.title}</Text>
+        {!!article.hasCoverPhoto &&
+          <Image
+            resizeMode="cover"
+            source={{ uri: article.coverSrc.m.src }}
+            style={styles.img}
+          />
+          }
       </TouchableOpacity>
     );
   }

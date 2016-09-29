@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import { BackAndroid, View, TouchableOpacity, NavigationExperimental, StyleSheet } from 'react-native';
+import { BackAndroid, TouchableOpacity, NavigationExperimental, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 
 import { navigatePush, navigatePop } from '../redux/modules/routing';
@@ -42,12 +42,7 @@ class AppContainer extends React.Component {
     };
 
     const toRender = componentsMapping[route.key] || null;
-    // make all the Views' marginTop equals header height
-    return (
-      <View style={{ flex: 1, marginTop: NavigationExperimental.Header.HEIGHT }}>
-      {React.createElement(toRender, { route })}
-      </View>
-    );
+    return React.createElement(toRender, { route });
   }
 
   _renderHeader(sceneProps) {
@@ -90,7 +85,7 @@ class AppContainer extends React.Component {
         style={styles.outerContainer}
         onNavigateBack={handleNavigateBack}
         renderScene={this._renderScene}
-        renderOverlay={this._renderHeader}
+        renderHeader={this._renderHeader}
       />
     );
   }

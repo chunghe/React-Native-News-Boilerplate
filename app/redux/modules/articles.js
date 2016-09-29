@@ -5,12 +5,12 @@ export const ARTICLES_REQUEST = 'ARTICLES_REQUEST';
 export const ARTICLES_SUCCESS = 'ARTICLES_SUCCESS';
 export const ARTICLES_FAILURE = 'ARTICLES_FAILURE';
 
-const API_ROOT = 'http://dev.twreporter.org:8080';
+const API_ROOT = 'http://m.cnyes.com/api/v2';
 
 export function fetchArticles() {
   return {
     [CALL_API]: {
-      endpoint: `${API_ROOT}/posts`,
+      endpoint: `${API_ROOT}/news/headline`,
       method: 'GET',
       types: [ARTICLES_REQUEST, ARTICLES_SUCCESS, ARTICLES_FAILURE]
     }
@@ -20,7 +20,7 @@ export function fetchArticles() {
 export default function reducer(state = {}, action) {
   switch (action.type) {
     case ARTICLES_SUCCESS:
-      return merge({}, state, action.payload._items);
+      return merge({}, state, action.payload.items.data);
     case ARTICLES_FAILURE:
       return action.payload.message;
     default:
